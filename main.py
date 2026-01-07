@@ -49,7 +49,7 @@ class SignRequest(BaseModel):
 class SignResponse(BaseModel):
     task_id: str
     exp_dt: str
-    signature_hex: str
+    signature: str
     status: str
 
 @app.post("/sign", response_model=SignResponse)
@@ -85,7 +85,7 @@ async def sign_message(request: SignRequest):
         return SignResponse(
             task_id= 'id_place_holder',
             exp_dt = "2025-11-05T14:30:00+07:00",
-            signature_hex=signature.hex(),
+            signature=signature.hex(),
             status=status
         )
     except Exception as e:
